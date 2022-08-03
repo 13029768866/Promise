@@ -2,25 +2,25 @@
 // 1、函数的返回值是一个函数
 // 2、函数的参数是一个函数
 
-function core() {
-  console.log('核心代码')
+function core(a, b, c) {
+  console.log('核心代码',a, b, c)
 }
 
 // 需求：在不改变核心代码且执行之前,执行一个自定义before逻辑
 
-core.before = function (cb) {
+Function.prototype.before = function (cb) {
   /* 箭头函数知识点 */
   // 1、箭头函数没有this
   // 2、箭头函数没有arguments
   // 3、箭头函数没有prototype
-  return () => {
+  return (...args) => {
     cb();
-    this(); /* core.before this指向core */
+    this(...args); /* core.before this指向core */
   }
 }
 
-let newCore = core.before(function () {
+const newCore = core.before( function () {
   console.log('before')
 })
 
-newCore();
+newCore(1,2,3);
