@@ -3,17 +3,16 @@ class Subject {   // 被观察者
   constructor (name) {
     this.name = name;
     this._watchers = [];
-    this.state = '很开心';
+    this.state = '开心！'
   }
-  attach(o) {   // 被观察者与观察者建立联系, 订阅
+  attach(o) {
     this._watchers.push(o);
   }
   setState(newState) {
-    this._watchers.forEach( watcher => {
-      this.state = newState;
-      watcher.update(this);
-    })
+    this.state = newState;
+    this._watchers.forEach(watch => watch.update(this))
   }
+
 
 }
 
@@ -21,7 +20,7 @@ class Oberserver {   // 观察者
   constructor (name) {
     this.name = name;
   }
-  update (baby) {
+  update(baby) {
     console.log(`${baby.name}:${this.name}${baby.state}`)
   }
 }
