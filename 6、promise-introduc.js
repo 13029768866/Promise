@@ -30,8 +30,9 @@ const MyPromise = require('./8、promise-async')
 
 const myPromise = new MyPromise((resolve, reject) => {
   setTimeout(() => {
-    reject('error');
     resolve('ok');
+
+    reject('error');
   },1000)
 
 })
