@@ -11,7 +11,7 @@
 // 5、通过resolve,reject改变状态, pending只能改变一次状态
 // 6、executor发生异常时候,直接走reject
 
-const promise = new Promise((resolve, reject) => {
+/*const promise = new Promise((resolve, reject) => {
   console.log('executor');
 
   resolve('ok');
@@ -23,20 +23,26 @@ promise.then((res) => {
 },(reason) => {
   console.log('reason----',reason)
 
-})
+})*/
 
-const MyPromise = require('./7、promise-sync')
+const MyPromise = require('./8、promise-async')
 
 
-const myPromise = new Promise((resolve, reject) => {
-  console.log('my executor');
-  
-  resolve('ok');
-  reject('error');
+const myPromise = new MyPromise((resolve, reject) => {
+  setTimeout(() => {
+    reject('error');
+    resolve('ok');
+  },1000)
+
 })
 myPromise.then((res) => {
-  console.log('success----',res)
+  console.log('success1----',res)
 },(reason) => {
-  console.log('reason----',reason)
+  console.log('reason1----',reason)
+})
 
+myPromise.then((res) => {
+  console.log('success2----',res)
+},(reason) => {
+  console.log('reason2----',reason)
 })
