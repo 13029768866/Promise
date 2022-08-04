@@ -11,5 +11,32 @@
 // 5、通过resolve,reject改变状态, pending只能改变一次状态
 // 6、executor发生异常时候,直接走reject
 
+const promise = new Promise((resolve, reject) => {
+  console.log('executor');
+
+  resolve('ok');
+  reject('error');
+})
+
+promise.then((res) => {
+  console.log('success----',res)
+},(reason) => {
+  console.log('reason----',reason)
+
+})
+
+const MyPromise = require('./7、promise-sync')
 
 
+const myPromise = new Promise((resolve, reject) => {
+  console.log('my executor');
+  
+  resolve('ok');
+  reject('error');
+})
+myPromise.then((res) => {
+  console.log('success----',res)
+},(reason) => {
+  console.log('reason----',reason)
+
+})
