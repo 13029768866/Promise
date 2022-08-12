@@ -15,16 +15,15 @@ class MyPromise {
 
     /* 状态只能从PENDDING转变到成功/失败 */
     const resolve = (res) => {
-      if(this.status === PENDDING) {
+      if(this.status === PENDDING){
         this.status = FULFILLED;
         this.result = res;
         this.onResolvedCallbacks.forEach(cb => cb());
       }
-
     }
 
     const reject = (reason) => {
-      if(this.status === PENDDING) {
+      if(this.status === PENDDING){
         this.status = REJECTED;
         this.reason = reason;
         this.onRejectefdCallbacks.forEach(cb => cb());
@@ -48,7 +47,6 @@ class MyPromise {
       this.onResolvedCallbacks.push(() => {
         onFulfilled(this.result)
       })
-
       this.onRejectefdCallbacks.push(() => {
         onRejected(this.reason)
       })

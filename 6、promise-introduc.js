@@ -25,26 +25,3 @@ promise.then((res) => {
 
 })*/
 
-const MyPromise = require('./8、promise-async')
-
-
-const myPromise = new MyPromise((resolve, reject) => {
-  // resolve('ok');
-
-  setTimeout(() => {
-
-    reject('error');
-  },1000)
-
-})
-myPromise.then((res) => {
-  console.log('success1----',res)
-},(reason) => {
-  console.log('reason1----',reason)
-})
-
-myPromise.then((res) => {
-  console.log('success2----',res)
-},(reason) => {
-  console.log('reason2----',reason)
-})
