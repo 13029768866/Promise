@@ -10,6 +10,8 @@ c();
 
 
 // 柯里化，偏函数
+// 柯里化必须转成单参数传入sum(1)(2)(3)
+// 偏函数sum(1,2)(3)
 let utils = {};
 
 function isType (type) {
