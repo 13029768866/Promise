@@ -10,7 +10,7 @@ class Promise {
     this.reason = undefined; // 1.5. 表示为什么promise被拒绝的一个值
     this.resolveFnList = [];
     this.rejectFnList = [];
-
+    
     const resolve = (result) => {
       if (this.state !== PENDING) return;
       this.state = RESOLVED;
@@ -151,4 +151,12 @@ class Promise {
   }
 }
 
+Promise.deferred = function () {
+  const deferred = {};
+  deferred.promise = new Promise((resolve, reject) => {
+    deferred.resolve = resolve;
+    deferred.reject = reject;
+  });
+  return deferred;
+};
 module.exports = Promise;

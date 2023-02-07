@@ -1,24 +1,37 @@
-const MyPromise = require("./review");
-const promise = new MyPromise((resolve, reject) => {
-  setTimeout(() => {
-    reject("负债");
-  }, 1000);
-});
+const MyPromise = require("./9、then-chain-method");
 
-promise.then(
-  (val) => {
-    console.log("成功", val);
-  },
-  (resson) => {
-    console.log("失败", resson);
-  }
-);
+// 原生Promise
+// !问题1、 promise === x
+// const promise2 = new Promise((resolve, reject) => {
+//   resolve();
+// }).then(() => {
+//   return promise2;
+// });
 
-// promise.then(
-//   (val) => {
-//     console.log("成功", val);
+// promise2.then(
+//   () => {},
+//   (err) => {
+//     console.log("ERROR~~", err);
+//   }
+// );
+// !问题2、 别人家的promise的then方法劫持
+// let promsie = {};
+// Object.defineProperty(promsie, "then", {
+//   get() {
+//     throw Error("别人家的Promise报错了~~");
 //   },
-//   (resson) => {
-//     console.log("失败", resson);
+// });
+
+// MyPromise
+// const myPromise2 = new MyPromise((resolve, reject) => {
+//   resolve();
+// }).then(() => {
+//   return myPromise2;
+// });
+
+// myPromise2.then(
+//   () => {},
+//   (err) => {
+//     console.log("ERROR~~", err);
 //   }
 // );
