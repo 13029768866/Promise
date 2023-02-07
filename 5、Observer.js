@@ -15,6 +15,7 @@ class Subject {
     this.wathers.forEach((o) => o.update(this));
   }
 }
+Object.defin
 
 class Oberserver {
   // 观察者

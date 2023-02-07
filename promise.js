@@ -10,8 +10,12 @@ class Promise {
     this.reason = undefined; // 1.5. 表示为什么promise被拒绝的一个值
     this.resolveFnList = [];
     this.rejectFnList = [];
-    
+
     const resolve = (result) => {
+      if (result instanceof Promise) {
+        return result.then((resolve, reject));
+      }
+
       if (this.state !== PENDING) return;
       this.state = RESOLVED;
       this.value = result;
@@ -100,10 +104,15 @@ class Promise {
     return promise2;
   }
 
+  // catch本质就是then
+  catch(errCallback) {
+    return this.then(null, errCallback);
+  }
+
   resolvePromise(promise2, x, resolve, reject) {
     // 2.3.1. 如果promise和x引用同一个对象，用TypeError作为原因拒绝promise
     if (promise2 === x) {
-      return reject(new TypeError("Chaining cycle!"));
+      return reject(new TypeError("循环引用!"));
     }
     if ((x !== null && typeof x === "object") || typeof x === "function") {
       // 2.3.3. 如果x是一个对象或函数
@@ -148,6 +157,12 @@ class Promise {
     } else {
       resolve(x);
     }
+  }
+
+  static resolve(data) {
+    return new Promise((resolve, reject) => {
+      resolve(data);
+    });
   }
 }
 
