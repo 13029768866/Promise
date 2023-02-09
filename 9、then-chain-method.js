@@ -78,7 +78,7 @@ class Promise {
     // then的穿透,让他传递到下一个then
     onFulfilled = typeof onFulfilled === "function" ? onFulfilled : (y) => y;
     onRejected =
-      typeof onFulfilled === "function"
+      typeof onRejected === "function"
         ? onRejected
         : (err) => {
             throw err;
