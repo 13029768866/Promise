@@ -3,7 +3,7 @@ const PENDDING = "PENDDING"; // 等待态
 const FULFILLED = "FULFILLED"; // 成功态
 const REJECTED = "REJECTED"; // 拒绝态
 
-class MyPromise {
+class Promise {
   constructor(executor) {
     this.status = PENDDING; // 状态默认等待态
     this.result = undefined; // 成功的结果
@@ -43,4 +43,4 @@ class MyPromise {
   }
 }
 
-module.exports = MyPromise;
+module.exports = Promise;
